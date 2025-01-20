@@ -1,0 +1,17 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("Enter a character:");
+        char ch = Convert.ToChar(Console.ReadLine());
+
+        if (ch >= 'A' && ch <= 'Z')
+            Console.WriteLine("Uppercase");
+        else if (ch >= 'a' && ch <= 'z')
+            Console.WriteLine("Lowercase");
+        else
+            Console.WriteLine("Not an alphabet.");
+    }
+}
