@@ -1,0 +1,17 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("Enter principal, rate, and time:");
+        double principal = Convert.ToDouble(Console.ReadLine());
+        double rate = Convert.ToDouble(Console.ReadLine());
+        int time = Convert.ToInt32(Console.ReadLine());
+
+        double amount = principal * Math.Pow(1 + rate / 100, time);
+        double compoundInterest = amount - principal;
+
+        Console.WriteLine("Compound Interest: " + compoundInterest);
+    }
+}
