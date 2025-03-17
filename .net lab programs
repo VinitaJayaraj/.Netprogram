@@ -1,0 +1,821 @@
+using System;
+ using System.Collections.Generic;
+ using System.ComponentModel;
+ using System.Data;
+ using System.Drawing;
+ using System.Linq;
+ using System.Text;
+ using System.Threading.Tasks;
+ using System.Windows.Forms;
+ namespace Basic_Server_Controls
+ {
+  public partial class Form1 : Form
+  {
+  public Form1()
+  {
+  InitializeComponent();
+  }
+  private void button1_Click(object sender, EventArgs e)
+ {
+  if (textBox1.Text == "")
+  {
+  MessageBox.Show("Enter Username !!");
+  }
+  else if (textBox2.Text == "")
+  {
+  MessageBox.Show("Enter Password !!");
+  }
+  else if (textBox1.Text == "Abi" && textBox2.Text == "123")
+  {
+  this.Hide();
+  Form frm2 = new Form2();
+  frm2.ShowDialog();
+  }
+  else
+  {
+  MessageBox.Show("Invalid Credential", "Try Again");
+  }
+  }
+  }
+ }
+ 
+ using System;
+ using System.Collections.Generic;
+ using System.ComponentModel;
+ using System.Data;
+ using System.Drawing;
+ using System.Linq;
+ using System.Text;
+ using System.Threading.Tasks;
+ using System.Windows.Forms;
+ namespace Basic_Server_Controls
+ {
+  public partial class Form2 : Form
+  {
+  public Form2()
+  {
+  InitializeComponent();
+  }
+  private void button1_Click(object sender, EventArgs e)
+  {
+  int a;
+  a = Convert.ToInt32(textBox1.Text);
+  if (a >= 18)
+  {
+  MessageBox.Show("Eligibility To Vote !!");
+  }
+  else
+  {
+  MessageBox.Show("Not Eligibility To Vote !!");
+  }
+  }
+  }
+ }
+ 
+ 
+ 2
+ <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs"
+ Inherits="Validation_Class.WebForm1" %>
+ <!DOCTYPE html>
+ <html xmlns="http://www.w3.org/1999/xhtml">
+ <head runat="server">
+  <title></title>
+  <style type="text/css">
+  .auto-style1 {
+  width: 308px;
+  }
+  </style>
+ </head>
+ <body>
+  <form id="form1" runat="server">
+  <div>
+  <table style="width:100%;">
+  <tr>
+  <td class="auto-style1">Registration Form</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  </tr>
+  <tr>
+  <td class="auto-style1">
+  <asp:Label ID="Label1" runat="server" Text="Username"></asp:Label>
+  </td>
+  <td>
+  <asp:TextBox ID="TextBox1" runat="server"
+ OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
+  <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
+ ControlToValidate="TextBox1" ErrorMessage="Enter valid
+ Username"></asp:RequiredFieldValidator>
+  </td>
+  <td>&nbsp;</td>
+  </tr>
+  <tr>
+ <td class="auto-style1">
+  <asp:Label ID="Label2" runat="server" Text="Age"></asp:Label>
+  </td>
+  <td>
+  <asp:TextBox ID="TextBox2" runat="server"
+ OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
+  <asp:RangeValidator ID="RangeValidator1" runat="server"
+ ControlToValidate="TextBox2" ErrorMessage="Enter Valid Age" MaximumValue="50"
+ MinimumValue="30"></asp:RangeValidator>
+  </td>
+  <td>&nbsp;</td>
+  </tr>
+  <tr>
+  <td class="auto-style1">
+  <asp:Label ID="Label3" runat="server" Text="Email"></asp:Label>
+  </td>
+  <td>
+  <asp:TextBox ID="TextBox3" runat="server"
+ OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
+  <asp:RegularExpressionValidator ID="RegularExpressionValidator1"
+ runat="server" ControlToValidate="TextBox3" ErrorMessage="Enter Valid Email"
+ ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-
+ .]\w+)*"></asp:RegularExpressionValidator>
+  </td>
+  <td>&>&nbsp;</td>
+  </tr>
+  <tr>
+  <td class="auto-style1">
+  <asp:Label ID="Label4" runat="server" Text="Password"></asp:Label>
+  </td>
+  <td>
+  <asp:TextBox ID="TextBox4" runat="server"
+ OnTextChanged="TextBox1_TextChanged" Type="Password"></asp:TextBox>
+  </td>
+  <td>&nbsp;</td>
+  </tr>
+  <tr>
+  <td class="auto-style1">
+  <asp:Label ID="Label5" runat="server" Text="Retype Password"></asp:Label>
+  </td>
+  <td>
+  <asp:TextBox ID="TextBox5" runat="server"
+ OnTextChanged="TextBox1_TextChanged" Type="Password"></asp:TextBox>
+  <asp:CompareValidator ID="CompareValidator1" runat="server"
+ ControlToCompare="TextBox4" ControlToValidate="TextBox5" ErrorMessage="Enter Valid
+ Password"></asp:CompareValidator>
+  </td>
+  <td>&nbsp;</td>
+  </tr>
+  <tr>
+  <td class="auto-style1">
+ <asp:Button ID="Button1" runat="server" Text="Register"
+ OnClick="Button1_Click" PostBackUrl="~/WebForm2.aspx" />
+  </td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  </tr>
+  </table>
+  </div>
+  </form>
+ </body>
+ </html>
+ 
+ 
+ 3
+ using System;
+ using System.Collections.Generic;
+ using System.ComponentModel;
+ using System.Data;
+ using System.Drawing;
+ using System.Linq;
+ using System.Text;
+ using System.Threading.Tasks;
+ using System.Windows.Forms;
+ namespace Student_Mark
+ {
+  public partial class Form1 : Form
+  {
+  string[] StudentNames = new string[100];
+  int[,] StudentMarks = new int[100, 3];
+  int studentcount = 0;
+  public Form1()
+  {
+  InitializeComponent();
+  }
+  private void Add_Click(object sender, EventArgs e)
+  {
+  if (studentcount <= 100)
+  {
+  MessageBox.Show("student list full");
+  }
+  StudentNames[studentcount] = textBox1.Text;
+  StudentMarks[studentcount, 0] = Convert.ToInt32(textBox2.Text);
+  StudentMarks[studentcount, 1] = Convert.ToInt32(textBox3.Text);
+  StudentMarks[studentcount, 2] = Convert.ToInt32(textBox4.Text);
+  studentcount++;
+  MessageBox.Show("student added successfully");
+  ClearInputs();
+  }
+  private void Diaplay_Click(object sender, EventArgs e)
+  {
+ listBox1.Items.Clear();
+  for (int i = 0; i < studentcount; i++)
+  {
+  listBox1.Items.Add(StudentNames[i]+"marks:"+StudentMarks[i,
+ 0]+","+StudentMarks[i, 1]+","+StudentMarks[i, 2]);
+  }
+  }
+  private void Average_Click(object sender, EventArgs e)
+  {
+  if (studentcount == 0)
+  {
+  MessageBox.Show(" No students available ");
+  return;
+  }
+  double totalmarks = 0;
+  int totalsubjets = studentcount * 3;
+  for (int i = 0; i < studentcount; i++)
+  {
+  for (int j = 0; j < 3; j++)
+  {
+  totalmarks += StudentMarks[i, j];
+  }
+  }
+  double average = totalmarks / totalsubjets;
+  MessageBox.Show($"class Average Marks: {average:F2}");
+  }
+  private void Search_Click(object sender, EventArgs e)
+  {
+  string searchname = textBox5.Text;
+  bool found = false;
+  for (int i = 0; i < studentcount; i++)
+  {
+  if (StudentNames[i].Equals(searchname,
+  StringComparison.OrdinalIgnoreCase))
+  {
+  MessageBox.Show($" student found:{ StudentNames[i]}marks:{StudentMarks[i,
+ 0]},{ StudentMarks[i, 1]},{ StudentMarks[i, 2]}");
+  found = true;
+  break;
+ }
+  }
+  if (!found)
+  {
+  MessageBox.Show("student not found.");
+  }
+  }
+  private void Exit_Click(object sender, EventArgs e)
+  {
+  Environment.Exit(0);
+  }
+  private void ClearInputs()
+  {
+  textBox1.Clear();
+  textBox2.Clear();
+  textBox3.Clear();
+  textBox4.Clear();
+  }
+  }
+ }
+ 
+ 
+ 4
+ using System;
+ using System.Collections.Generic;
+ using System.ComponentModel;
+ using System.Data;
+ using System.Drawing;
+ using System.Linq;
+ using System.Text;
+ using System.Threading.Tasks;
+ using System.Windows.Forms;
+ namespace Traffic_Control
+ {
+  public partial class Form1 : Form
+  {
+  public Form1()
+  {
+  InitializeComponent();
+  red.Visible = true;
+  yellow.Visible = false;
+  green.Visible = false;
+  }
+  private void timer1_Tick(object sender, EventArgs e)
+  {
+  if (red.Visible == true)
+  {
+  red.Visible = false;
+  yellow.Visible = false;
+  green.Visible = true;
+  textBox1.Text = "Have a safe journey";
+  timerred.Enabled = true;
+  }
+  else if (green.Visible == true)
+  {
+  red.Visible = false;
+  yellow.Visible = true;
+  green.Visible = false;
+  textBox1.Text = "slow down your vehicle";
+  timeryellow.Enabled = true;
+  }
+  else if (yellow.Visible == true){
+  red.Visible = true;
+ yellow.Visible = false;
+  green.Visible = false;
+  textBox1.Text = "stop your vehicle";
+  timergreen.Enabled = true;
+  }
+  }
+  private void start_Click(object sender, EventArgs e)
+  {
+  timerred.Enabled = true;
+  }
+  private void stop_Click(object sender, EventArgs e)
+  {
+  timerred.Enabled = false;
+  timeryellow.Enabled = false;
+  timergreen.Enabled = false;
+  red.Visible = true;
+  yellow.Visible = false;
+  green.Visible = false;
+  textBox1.Text = "Stop your vehicle";
+  }
+  private void timerred_Tick(object sender, EventArgs e)
+  {
+  timerred.Enabled = false;
+  timer1_Tick(sender, e);
+  }
+  private void timeryellow_Tick(object sender, EventArgs e)
+  {
+  timeryellow.Enabled = false;
+  timer1_Tick(sender, e);
+  }
+  private void timergreen_Tick(object sender, EventArgs e)
+  {
+  timergreen.Enabled = false;
+  timer1_Tick(sender, e);
+  }
+  private void button3_Click(object sender, EventArgs e)
+  {
+  Environment.Exit(0);
+  }
+  private void ClearInputs()
+  {
+  textBox1.Clear();
+  }
+  }
+ }
+ 
+ 
+ 5.
+ using System;
+ using System.Collections.Generic;
+ using System.ComponentModel;
+ using System.Data;
+ using System.Drawing;
+ using System.Linq;
+ using System.Text;
+ using System.Threading.Tasks;
+ using System.Windows.Forms;
+ namespace Exception_Handling_1
+ {
+  public partial class Form1 : Form{
+  public Form1()
+  {
+  InitializeComponent();
+  }
+  private void button1_Click(object sender, EventArgs e){
+  try{
+  int numerator = Convert.ToInt32(textBox1.Text);
+  int denominator = Convert.ToInt32(textBox2.Text);
+  int Answer = numerator / denominator;
+  textBox3.Text = Answer.ToString();
+  }
+  catch (FormatException){
+  MessageBox.Show("Invalid input enter two numbers please");
+  }
+  catch (DivideByZeroException divideByZeroException){
+  MessageBox.Show(divideByZeroException.Message, "Can't divide by zero");
+  }
+  finally{
+  textBox1.Text = "";
+  textBox2.Text = "";
+  }
+  }
+  private void button2_Click(object sender, EventArgs e){
+  var form2 = new Form2();
+  form2.Show();
+  this.Hide();
+  }
+  }
+ }
+ using System;
+ using System.Collections.Generic;
+ using System.ComponentModel;
+ using System.Data;
+ using System.Drawing;
+ using System.Linq;
+ using System.Text;
+ using System.Threading.Tasks;
+ using System.Windows.Forms;
+ namespace Exception_Handling_1
+ {
+  public partial class Form2 : Form
+  {
+  public Form2()
+  {
+  InitializeComponent();
+  }
+  private void button1_Click(object sender, EventArgs e)
+  {
+  try
+  {
+  int day = Convert.ToInt32(textBox1.Text);
+  int month = Convert.ToInt32(textBox2.Text);
+  int year = Convert.ToInt32(textBox3.Text);
+  DateTime accessionDate = new DateTime(year, month, day);
+  MessageBox.Show($"Valid Accession Date:
+ {accessionDate.ToString("dd/MM/yyyy")}");
+  }
+  catch (FormatException)
+  {
+  MessageBox.Show("Invalid input. Please enter numeric values only.", "Input Error");
+  }
+  catch (ArgumentOutOfRangeException){
+  MessageBox.Show("Invalid date. Please check the day, month, and year values.",
+ "Date Error");
+  }
+  catch (Exception ex)
+  {
+  MessageBox.Show($"Unexpected error: {ex.Message}", "Error");
+  }
+ Finally
+  {
+  textBox1.Clear();
+  textBox2.Clear();
+  textBox3.Clear();
+  }
+  }
+  private void button2_Click(object sender, EventArgs e)
+  {
+  Environment.Exit(0);
+  }
+  }
+ }
+ 
+ 
+ 6
+ using System;
+ using System.Collections.Generic;
+ using System.Linq;
+ using System.Web;
+ using System.Web.UI;
+ using System.Web.UI.WebControls;
+ namespace WebApplication9
+ {
+  public partial class WebForm1 : System.Web.UI.Page
+  {
+  protected void Page_Load(object sender, EventArgs e)
+  {
+  }
+  protected void submit_Click(object sender, EventArgs e)
+  {
+  string s = TextBox1.Text;
+  int num = 0, cl = 0, sl = 0, sp = 0, ss = 0;
+  foreach (char c in s)
+  {
+  if (Char.IsDigit(c)) num++;
+  else if (Char.IsUpper(c)) cl++;
+  else if (Char.IsLower(c)) sl++;
+  else if (Char.IsWhiteSpace(c)) sp++;
+  else sp++;
+  }
+  Label3.Text = $"number of digits:{num}<br/>" + $"capital letters:{cl}<br/>" +$"small
+ letters:{sl}<br/>" + $"spaces:{sp}<br/>" + $"special symbols:{sp++}";
+  }
+  protected void apply_Click(object sender, EventArgs e)
+  {
+  string s = TextBox2.Text;
+  int choice = Convert.ToInt32(DropDownList1.SelectedValue);
+  string output = "";
+  switch (choice)
+  {
+  case 1:
+  output = (string)s.Clone();
+  break;
+ case 2:
+  output = s.Contains(TextBox3.Text) ? "True" : "False";
+  break;
+  case 3:
+  output = s.ToLower();
+  break;
+  case 4:
+  output = s.ToUpper();
+  break;
+  case 5:
+  output = s.Trim();
+  break;
+  case 6:
+  int start = int.Parse(TextBox4.Text);
+  int length = int.Parse(TextBox5.Text);
+  output = s.Substring(start, length);
+  break;
+  case 7:
+  output = s.Replace(TextBox6.Text, TextBox7.Text);
+  break;
+  default:
+  output = "Invalid choice.";
+  break;
+  }
+  Label11.Text = "Output: " + output;
+  }
+  }
+ }
+ 
+ 
+ 7.
+ using System;
+ using System.Collections.Generic;
+ using System.Linq;
+ using System.Web;
+ using System.Web.UI;
+ using System.Web.UI.WebControls;
+ using System.IO;
+ namespace WebApplication2
+ {
+  public partial class Upload_File : System.Web.UI.Page
+  {
+  protected void FileUpload1_DataBinding(object sender, EventArgs e)
+  {
+  }
+  protected void Button1_Click(object sender, EventArgs e)
+  {
+  if (FileUpload1.HasFile)
+  {
+  string pathoffolder = Server.MapPath("~/upload images/");
+  if (!Directory.Exists(pathoffolder))
+  {
+  Directory.CreateDirectory(pathoffolder);
+  }
+  string getfilename = Path.GetFileName(FileUpload1.FileName);
+  string savePath = Path.Combine(pathoffolder, getfilename);
+  try
+  {
+  FileUpload1.SaveAs(savePath);
+  Label1.Text = getfilename + " has been uploaded successfully.";
+  }
+  catch (Exception ex)
+  {
+  Label1.Text = "Error: " + ex.Message;
+  }
+  }
+  else
+  {
+  Label1.Text = "No file selected.";
+  }
+  }
+  }
+ }
+ 
+ 
+ 8.
+ <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs"
+ Inherits="Master_1.Site1" %>
+ <!DOCTYPE html>
+ <html xmlns="http://www.w3.org/1999/xhtml">
+ <head runat="server">
+ <title></title>
+ </head>
+ <body>
+ <form id="form2" runat="server">
+ <div>
+ <table border="1">
+ <tr>
+ <td colspan="2" style="text-align: center">
+ <h1>Welcome to My Page </h1>
+ </td>
+ </tr>
+ <tr>
+ <td style="text-align: center; height: 480px; width: 250px">
+ <h1>Main Menu</h1>
+ <ul>
+ <li style="margin-top: 0px"><a href="#">Home</a></li>
+ <li><a href="#">About</a></li>
+ <li><a href="#">Contact</a></li>
+ <li><a href="#">FAQ</a></li>
+ <li><a href="#">News</a></li>
+ </ul>
+ </td>
+ <td style="text-align: center; height: 480px; width: 700px">
+ <asp:ContentPlaceHolder ID="MainContentPlaceHolder1" runat="server">
+ <h1>You can change content here</h1>
+ </asp:ContentPlaceHolder>
+ </td>
+ </tr>
+ <tr>
+ <td colspan="2" style="text-align: center">
+ <h1>Thank you for visiting</h1>
+ </td>
+ </tr>
+ </table>
+ </div>
+ </form>
+ </body>
+ </html>
+ 
+ <%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master"
+ AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="Master_1.WebForm1"
+ %>
+ <asp:Content ID="Content1" ContentPlaceHolderID="MainContentPlaceHolder1"
+ runat="Server">
+ <table>
+ <tr>
+ <th>
+ <h1>Student Information</h1>
+ </th>
+ </tr>
+ <tr>
+ <td><b>Name: Chetan Nargund</b></td>
+ </tr>
+ <tr>
+ <td><b>College: AIT</b></td>
+ </tr>
+ <tr>
+ <td><b>City: Bangalore</b></td>
+ </tr>
+ </table>
+ </asp:Content>
+ 
+ 
+ 
+ 9.
+ using System;
+ using System.Collections.Generic;
+ using System.Linq;
+ using System.Web;
+ using System.Web.UI;
+ using System.Web.UI.WebControls;
+ using System.Data.SqlClient;
+ using System.Data;
+ namespace DataBoundControl
+ {
+  public partial class WebForm1 : System.Web.UI.Page
+  {
+  SqlCommand cmd;
+ SqlConnection con;
+  SqlDataReader rd;
+  SqlDataAdapter adap;
+  string query;
+  DataTable dt;
+  public void dbconn()
+  {
+  string conn = System.Configuration.ConfigurationManager.ConnectionStrings
+ ["mark"].ToString();
+  con = new SqlConnection(conn);
+  con.Open();
+  }
+ protected void Page_Load(object sender, EventArgs e)
+  {
+  }
+  protected void Button1_Click(object sender, EventArgs e)
+  {
+  dbconn();
+ query = "INSERT INTO marks_info(name,dot_net,aiml,st,sbs,lab) VALUES ('" +
+ T1.Text + "','" + T2.Text + " ','" + T3.Text + "','" + T4.Text + "','" + T5.Text + "','" +
+ T6.Text + "')";
+  cmd = new SqlCommand(query, con);
+  cmd.ExecuteNonQuery();
+  Response.Write("<script> alert('data saved')</script>");
+  }
+ protected void Button2_Click(object sender, EventArgs e)
+  {
+  dbconn();
+  query = " SELECT * FROM marks_info";
+  cmd = new SqlCommand(query, con);
+  adap = new SqlDataAdapter(cmd);
+  dt = new DataTable();
+  adap.Fill(dt);
+  GridView1.DataSource = dt;
+  GridView1.DataBind();
+  }
+  }
+ }
+ 
+ 
+ 10.
+ using System;
+ using System.Collections.Generic;
+ using System.Linq;
+ using System.Web;
+ using System.Web.UI;
+ using System.Web.UI.WebControls;
+ using System.Data.SqlClient;
+ using System.Data;
+ namespace SQL
+ {
+  public partial class WebForm1 : System.Web.UI.Page
+  {
+  SqlCommand cmd;
+  SqlConnection con;
+  SqlDataReader rd;
+ SqlDataAdapter adap;
+  string query;
+  DataTable dt;
+  public void dbconn()
+  {
+  string conn = System.Configuration.ConfigurationManager.ConnectionStrings[“info”]
+ .ToStrings();
+  con = new SqlConnection(conn);
+  con.Open();
+  }
+  protected void Page_Load(object sender, EventArgs e)
+  {
+  }
+ protected void Button1_Click(object sender, EventArgs e)
+  {
+  dbconn();
+  query = "INSER TINTO student_information(name,age,qualification,address,
+ phone_number,email) VALUES ('" + T1.Text + "','" + T2.Text + "','" + T3.Text + "','" +
+ T4.Text + "','" + T5.Text + "','" + T6.Text + "')";
+  cmd = new SqlCommand(query, con);
+  cmd.ExecuteNonQuery();
+  Response.Write("Data Saved Successfully");
+  }
+  }
+ }
+ 
+ 11.
+ <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs"
+ Inherits="Content_Linking.WebForm1" %>
+ <!DOCTYPE html>
+ <html>
+ <body>
+  <h1>This is Page 1!</h1>
+  <asp:Literal ID="litNavigation" runat="server"></asp:Literal>
+  <p>The example uses the Content Linking Component to navigate between the pages in a text
+ file.</p>
+  <p>
+  <a href="text/links2.txt"><img src="/images/btn_view_text.gif" alt="View Text File"></a>
+ </p>
+ </body>
+ </html>
+ WebForm2.aspx:
+ <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm2.aspx.cs"
+ Inherits="Content_Linking.WebForm2" %>
+ <!DOCTYPE html>
+ <html>
+ <body>
+  <h1>This is Page 2!</h1>
+  <asp:Literal ID="litNavigation" runat="server"></asp:Literal>
+ </body>
+ </html>
+ WebForm3.aspx:
+ <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm3.aspx.cs"
+ Inherits="Content_Linking.WebForm3" %>
+ <!DOCTYPE html>
+ <html>
+ <body>
+  <h1>This is Page 3!</h1>
+  <asp:Literal ID="litNavigation" runat="server"></asp:Literal>
+ </body>
+ </html>
+ 
+ WebForm1.aspx.cs, WebForm2.aspx.cs, WebForm3.aspx.cs (Same for All)
+ using System;
+ using System.IO;
+ using System.Web.UI;
+ namespace Content_Linking
+ {
+  public partial class WebForm1 : Page
+  {
+  protected void Page_Load(object sender, EventArgs e)
+  {
+  string path = Server.MapPath("~/text/links2.txt");
+  if (!File.Exists(path)) return;
+  string[] pages = File.ReadAllLines(path);
+  int index = Array.IndexOf(pages, Path.GetFileName(Request.Url.AbsolutePath));
+  litNavigation.Text = (index > 0 ? $"<a href='{pages[index - 1]}'>Previous Page</a> " :
+ "") + (index < pages.Length - 1 ? $"<a href='{pages[index + 1]}'>Next Page</a>" : "");
+  }
+  }
+ }
+ 
+ 
+ 
+ 12.
+ <?xml version="1.0" encoding="utf-8" ?>
+ <Advertisements>
+  <Ad>
+  <ImageUrl>img/1.png</ImageUrl>
+  <NavigateUrl>https://meeraacademy.com</NavigateUrl>
+  <AlternateText>Meera Academy</AlternateText>
+  <Impressions>50</Impressions>
+  <Keyword>Meera</Keyword>
+  </Ad>
+  <Ad>
+  <ImageUrl>img/2.png</ImageUrl>
+  <NavigateUrl>http://meera.com</NavigateUrl>
+  <AlternateText>Meerta Aademy</AlternateText>
+  <Impressions>100</Impressions>
+  <Keyword>Academy</Keyword>
+  </Ad>
+  <Ad>
+  <ImageUrl>img/3.png</ImageUrl>
+  <NavigateUrl>https://meeraacademy.com</NavigateUrl>
+  <AlternateText>Meerta Aademy</AlternateText>
+  <Impressions>50</Impressions>
+  <Keyword>Academy</Keyword>
+  </Ad>
+ </Advertisements>
